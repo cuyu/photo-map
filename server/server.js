@@ -9,7 +9,7 @@ app.get('/', function (req, res) {
 
 app.get('/image', function (req, res) {
     const metadata = extractMetadata('/Users/CYu/Code/Javascript/photo-map/test2.jpeg');
-    res.send({...metadata.getThumbnailSize(), buffer: metadata.getThumbnailBuffer()});
+    res.send({...metadata.getThumbnailSize(), buffer: metadata.getThumbnailBuffer(), tags: metadata.tags});
 });
 
 app.listen(3001, '0.0.0.0', function () {

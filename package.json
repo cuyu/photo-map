@@ -14,7 +14,7 @@
     "react-scripts-ts": "2.16.0"
   },
   "scripts": {
-    "start": "react-scripts-ts start",
+    "start": "concurrently 'react-scripts-ts start' 'node server/server.js'",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
@@ -27,6 +27,7 @@
     "@types/react": "^16.4.6",
     "@types/react-dom": "^16.0.6",
     "@types/react-leaflet": "^1.1.5",
+    "concurrently": "^3.6.0",
     "typescript": "^2.9.2"
   },
   "proxy": "http://localhost:3001"
