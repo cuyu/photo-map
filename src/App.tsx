@@ -1,6 +1,8 @@
 import * as React from 'react';
 import {Map, TileLayer, Marker} from 'react-leaflet'
 import {DivIcon, LatLngTuple} from "leaflet";
+import FileAPI from 'fileapi'
+import 'fileapi/plugins/FileAPI.exif.js'
 
 
 class App extends React.Component {
@@ -27,17 +29,21 @@ class App extends React.Component {
     };
 
     componentWillMount() {
-        const that = this;
-        fetch('/image').then((response) => {
-            return response.json();
+        // const that = this;
+        fetch('/mov').then((response) => {
+            return response.arrayBuffer();
         }).then((value) => {
-            that.setState({
-                image: value.buffer.data,
-                height: value.height,
-                width: value.width,
-                lat: value.tags.GPSLatitude,
-                lng: value.tags.GPSLongitude,
+            const f = new File([value], 'test.jpeg', {type: 'video/mp4'});
+            FileAPI.getInfo(f, (err: any, info: any) => {
+                console.log(info);
             });
+            // that.setState({
+            //     image: value.buffer.data,
+            //     height: value.height,
+            //     width: value.width,
+            //     lat: value.tags.GPSLatitude,
+            //     lng: value.tags.GPSLongitude,
+            // });
         }).catch((err) => {
             console.warn(err);
         });
